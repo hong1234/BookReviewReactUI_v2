@@ -24,6 +24,9 @@ const ReviewForm = ({book, showReviewForm, setShowReviewForm}) => {
       try {
         const res = await axios.post(`${reviewUrl}${book.id}`, review, options) 
         book.reviews.push(res.data.data); // push review returned from server
+        setNameInput('');
+        setEmailInput('');
+        setContentInput('');
         setShowReviewForm(false)
       } catch (error) {
         // throw(error);
