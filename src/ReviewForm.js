@@ -7,7 +7,13 @@ const ReviewForm = ({book, showReviewForm, setShowReviewForm}) => {
 
   const [nameInput, setNameInput] = useState('');
   const [emailInput, setEmailInput] = useState('');
-  const [contentInput, setContentInput] = useState(''); 
+  const [contentInput, setContentInput] = useState('');
+  
+  const clearForm = () => {
+    setNameInput('');
+    setEmailInput('');
+    setContentInput('');
+  }
 
   const postData = async () => {
     if(nameInput.trim() !== '' && emailInput.trim() !== '' && contentInput.trim() !== ''){
@@ -24,9 +30,7 @@ const ReviewForm = ({book, showReviewForm, setShowReviewForm}) => {
       try {
         const res = await axios.post(`${reviewUrl}${book.id}`, review, options) 
         book.reviews.push(res.data.data); // push review returned from server
-        setNameInput('');
-        setEmailInput('');
-        setContentInput('');
+        clearForm()
         setShowReviewForm(false)
       } catch (error) {
         // throw(error);

@@ -14,13 +14,13 @@ const SORTS = {
 const BookList = ({books}) => {
 
   const [sort, setSort] = useState({
-      sortKey: 'NONE',
-      isReverse: false,
+    sortKey: 'NONE',
+    isReverse: false,
   });
 
   const handleSort = sortKey => {
-      const isReverse = sort.sortKey === sortKey && !sort.isReverse;
-      setSort({ sortKey, isReverse });
+    const isReverse = sort.sortKey === sortKey && !sort.isReverse;
+    setSort({ sortKey, isReverse });
   };
 
   const sortFunction = SORTS[sort.sortKey];

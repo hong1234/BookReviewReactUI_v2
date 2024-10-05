@@ -5,15 +5,18 @@ import axios from 'axios';
 const addBookUrl = 'http://localhost:8000/api/books';
 
 const BookForm = () => {
-  
   const navigate = useNavigate();
 
   const [titleInput, setTitleInput] = useState('');
   const [contentInput, setContentInput] = useState('');
 
+  const clearForm = () => {
+    setTitleInput('');
+    setContentInput('');
+  }
+
   const postData = async () => {
     if(titleInput.trim() !== '' && contentInput.trim() !== ''){
-
       const book = {
         title: titleInput,
         content: contentInput
@@ -26,14 +29,12 @@ const BookForm = () => {
       try {
         const res = await axios.post(`${addBookUrl}`, book, options) 
         // console.log(res.data);
-        setTitleInput('');
-        setContentInput(''); 
+        // clearForm() 
         navigate('/books')
       } catch (error) {
         // throw(error);
         console.log(error)
       }
-
     } 
     else {
     }
